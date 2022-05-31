@@ -49,9 +49,28 @@ function AlertMessage(event, message = "") {
 	}
 }
 
+function convertDate(inputFormat) {
+	function pad(s) { return (s < 10) ? '0' + s : s; }
+	var d = new Date(inputFormat)
+	return [pad(d.getDate()), pad(d.getMonth() + 1), d.getFullYear()].join('/')
+}
+
 function SwitchAPI(api, content) {
 	switch (api) {
 		case "multi_view_all_feesheets":
+			content.forEach(element => {
+				delete element['id_user'];
+				delete element['url_pict'];
+				delete element['standard_fee'];
+				delete element['role_label'];
+				delete element['first_name'];
+				delete element['last_name'];
+				delete element['username'];
+				delete element['add_date'];
+				delete element['fee_sheet_id'];
+				element['use_date'] = convertDate(new Date(Date.parse(element['use_date'])));
+				element["edit"] = `<button class="btn" onclick=""><i class="fa-solid fa-pen"></i></button>`;
+			});
 			document.getElementById("table_feesheets").innerHTML = ConvertJsonToTable(content, 'table_feesheets', null, null);
 			break;
 		default:
