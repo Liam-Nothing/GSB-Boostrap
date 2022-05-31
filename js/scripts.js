@@ -43,13 +43,16 @@ function GetStandarFees() {
 function ToogleNewFeeSheet() {
 	Feesheets_Table = document.getElementById("table-container");
 	NewFeesheets_Card = document.getElementById("feesheet-form");
+	EditFeesheets_Card = document.getElementById("edit-feesheet-form");
 
 	if (NewFeesheets_Card.classList.contains("hide")) {
 		Feesheets_Table.classList.add("hide");
 		NewFeesheets_Card.classList.remove("hide");
+		EditFeesheets_Card.classList.add("hide");
 	} else {
 		Feesheets_Table.classList.remove("hide");
 		NewFeesheets_Card.classList.add("hide");
+		EditFeesheets_Card.classList.add("hide");
 		GetFeesheets();
 	}
 }
@@ -72,5 +75,46 @@ function SendNewFeeSheet(draft = 0) {
 		AddFeesheets(2);
 	} else {
 		AddFeesheets(1);
+	}
+}
+
+function selectElement(id, valueToSelect) {
+	let element = document.getElementById(id);
+	element.value = valueToSelect;
+}
+
+function EditFeeSheet(id) {
+	ToogleEditFeeSheet();
+	document.getElementById("Edit_Description").value = list_feesheet[id]["description"];
+	document.getElementById("Edit_use_date").value = list_feesheet[id]["use_date"];
+	document.getElementById("Edit_Fee").value = list_feesheet[id]["fee"];
+	document.getElementById("EditDeleteHide").value = list_feesheet[id]["fee_sheet_id"];
+	selectElement("Edit_inputFees", list_feesheet[id]["standard_fee"]);
+}
+
+function EditDelete() {
+	let api = "multi_delete_feesheets";
+	let id_feesheet = document.getElementById("EditDeleteHide").value;
+
+	let data = JSON.stringify({ "api": api, "id_feesheet": id_feesheet });
+	let url = api_url;
+
+	RequestAPI(url, data);
+}
+
+function ToogleEditFeeSheet() {
+	Feesheets_Table = document.getElementById("table-container");
+	NewFeesheets_Card = document.getElementById("feesheet-form");
+	EditFeesheets_Card = document.getElementById("edit-feesheet-form");
+
+	if (EditFeesheets_Card.classList.contains("hide")) {
+		Feesheets_Table.classList.add("hide");
+		NewFeesheets_Card.classList.add("hide");
+		EditFeesheets_Card.classList.remove("hide");
+	} else {
+		Feesheets_Table.classList.remove("hide");
+		NewFeesheets_Card.classList.add("hide");
+		EditFeesheets_Card.classList.add("hide");
+		GetFeesheets();
 	}
 }

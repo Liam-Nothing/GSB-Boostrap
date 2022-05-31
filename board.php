@@ -26,7 +26,7 @@
 				</div>
 				<div class="list-group list-group-flush">
 					<a class="list-group-item list-group-item-action p-3 border-0 bg-transparent text-white" onclick="ToogleNewFeeSheet()"><i class="fa-solid fa-pen-to-square"></i> New feesheet</a>
-					<a class="list-group-item list-group-item-action p-3 border-0 bg-transparent text-white" href="#!"><i class="fa-solid fa-user"></i> Manage users</a>
+					<!-- <a class="list-group-item list-group-item-action p-3 border-0 bg-transparent text-white" href="#!"><i class="fa-solid fa-user"></i> Manage users</a> -->
 					<a class="list-group-item list-group-item-action p-3 border-0 bg-transparent text-white" onclick="Logout()"><i class="fa-solid fa-arrow-right-from-bracket"></i> Logout</a>
 				</div>
 			</div>
@@ -80,6 +80,45 @@
 								</form>
 							</div>
 							<button class="btn btn-danger mr-3" onclick="ToogleNewFeeSheet()"><i class="fa-solid fa-xmark"></i></button>
+						</div>
+					</div>
+
+					<div class="hide" id="edit-feesheet-form">
+						<div class="card m-lg-5 mt-3">
+							<h5 class="card-header">Edit feesheet</h5>
+							<div class="card-body">
+								<form>
+									<input type="hidden" id="EditDeleteHide" value="" />
+									<div class="form-row">
+										<div class="form-group col-md-6">
+											<label for="Edit_Description">Description</label>
+											<input type="text" class="form-control" id="Edit_Description" placeholder="Description">
+										</div>
+									</div>
+									<div class="form-row">
+										<div class="form-group col-md-6">
+											<label for="Edit_Fee">Fee</label>
+											<input type="text" class="form-control" id="Edit_Fee" placeholder="30.00">
+										</div>
+									</div>
+									<div class="form-row">
+										<div class="form-group col-md-2">
+											<label for="Edit_use_date">Use date</label>
+											<input type="date" class="form-control" id="Edit_use_date">
+										</div>
+									</div>
+									<div class="form-group col-md-4">
+										<label for="Edit_inputFees">Standard fees</label>
+										<div class="form-horizontal">
+											<select id="Edit_inputFees" class="form-control"></select>
+										</div>
+									</div>
+									<button type="button" class="btn btn-primary mt-3" onclick="EditNewFeeSheet(0)">Send</button>
+									<button type="button" class="btn btn-warning mt-3" onclick="EditNewFeeSheet(1)">Draft</button>
+									<button type="button" class="btn btn-danger mt-3" onclick="EditDelete()">Delete</button>
+								</form>
+							</div>
+							<button class="btn btn-danger mr-3" onclick="ToogleEditFeeSheet()"><i class="fa-solid fa-xmark"></i></button>
 						</div>
 					</div>
 
