@@ -1,0 +1,15 @@
+html {
+	background-color: #508bfc !important;
+}
+
+.bg-color-0{
+	background-color: #508bfc !important;
+}
+
+.list-group-item {
+	transition : all 0.4s;
+}
+
+.list-group-item:hover{
+	margin-left: 20px;
+}

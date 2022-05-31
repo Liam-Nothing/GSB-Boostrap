@@ -26,18 +26,16 @@
 								<img src="img/logo_top_black.png" class="img-fluid mb-5" alt="Responsive image">
 
 								<div class="form-outline mb-4">
-									<input type="text" id="username" class="form-control form-control-lg" placeholder="Username" />
+									<input type="text" id="username" class="form-control form-control-lg" placeholder="Username" value="admin" />
 								</div>
 
 								<div class="form-outline mb-4">
-									<input type="password" id="password" class="form-control form-control-lg" placeholder="Password" />
+									<input type="password" id="password" class="form-control form-control-lg" placeholder="Password" value="admin" />
 								</div>
 
 								<button class="btn btn-primary btn-lg btn-block" type="button" onclick="Login()">Login</button>
 
-								<div id="alert-gsb" class="alert alert-danger mt-4 hide" role="alert">
-									This is a danger alert—check it out!
-								</div>
+								<div id="alert-gsb" class="alert alert-danger mt-4 hide" role="alert"></div>
 
 							</div>
 						</div>
