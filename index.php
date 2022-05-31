@@ -26,11 +26,11 @@
 								<img src="img/logo_top_black.png" class="img-fluid mb-5" alt="Responsive image">
 
 								<div class="form-outline mb-4">
-									<input type="text" id="username" class="form-control form-control-lg" placeholder="Username" value="admin" />
+									<input type="text" id="username" class="form-control form-control-lg" placeholder="Username" value="user" />
 								</div>
 
 								<div class="form-outline mb-4">
-									<input type="password" id="password" class="form-control form-control-lg" placeholder="Password" value="admin" />
+									<input type="password" id="password" class="form-control form-control-lg" placeholder="Password" value="user" />
 								</div>
 
 								<button class="btn btn-primary btn-lg btn-block" type="button" onclick="Login()">Login</button>

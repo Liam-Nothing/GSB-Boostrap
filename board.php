@@ -25,7 +25,7 @@
 					<img src="img/logo_top_white.png" class="img-fluid" alt="Responsive image" style="max-width:100px;">
 				</div>
 				<div class="list-group list-group-flush">
-					<a class="list-group-item list-group-item-action p-3 border-0 bg-transparent text-white" href="#!"><i class="fa-solid fa-pen-to-square"></i> New feesheet</a>
+					<a class="list-group-item list-group-item-action p-3 border-0 bg-transparent text-white" onclick="ToogleNewFeeSheet()"><i class="fa-solid fa-pen-to-square"></i> New feesheet</a>
 					<a class="list-group-item list-group-item-action p-3 border-0 bg-transparent text-white" href="#!"><i class="fa-solid fa-user"></i> Manage users</a>
 					<a class="list-group-item list-group-item-action p-3 border-0 bg-transparent text-white" onclick="Logout()"><i class="fa-solid fa-arrow-right-from-bracket"></i> Logout</a>
 				</div>
@@ -41,13 +41,49 @@
 				<!-- Page content-->
 				<div class="container-fluid">
 
-					<div class="table-responsive">
+					<div class="table-responsive" id="table-container">
 						<table class="table table-hover" id="table_feesheets">
 						</table>
 					</div>
 
-					<div id="alert-gsb" class="alert alert-danger mt-4 hide" role="alert"></div>
+					<div class="hide" id="feesheet-form">
+						<div class="card m-lg-5 mt-3">
+							<h5 class="card-header">New feesheet</h5>
+							<div class="card-body">
+								<form>
+									<div class="form-row">
+										<div class="form-group col-md-6">
+											<label for="Description">Description</label>
+											<input type="text" class="form-control" id="Description" placeholder="Description">
+										</div>
+									</div>
+									<div class="form-row">
+										<div class="form-group col-md-6">
+											<label for="Fee">Fee</label>
+											<input type="text" class="form-control" id="Fee" placeholder="30.00">
+										</div>
+									</div>
+									<div class="form-row">
+										<div class="form-group col-md-2">
+											<label for="use_date">Use date</label>
+											<input type="date" class="form-control" id="use_date">
+										</div>
+									</div>
+									<div class="form-group col-md-4">
+										<label for="inputFees">Standard fees</label>
+										<div class="form-horizontal">
+											<select id="inputFees" class="form-control"></select>
+										</div>
+									</div>
+									<button type="button" class="btn btn-primary mt-3" onclick="SendNewFeeSheet(0)">Send</button>
+									<button type="button" class="btn btn-warning mt-3" onclick="SendNewFeeSheet(1)">Draft</button>
+								</form>
+							</div>
+							<button class="btn btn-danger mr-3" onclick="ToogleNewFeeSheet()"><i class="fa-solid fa-xmark"></i></button>
+						</div>
+					</div>
 
+					<div id="alert-gsb" class="alert alert-danger mt-4 hide" role="alert"></div>
 				</div>
 			</div>
 		</div>
@@ -63,6 +99,7 @@
 	<script src="js/json-to-table.js"></script>
 	<script>
 		GetFeesheets();
+		GetStandarFees();
 	</script>
 </body>
 

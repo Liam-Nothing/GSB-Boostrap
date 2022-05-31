@@ -1,5 +1,6 @@
 let love = "❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️";
 let alert = document.getElementById("alert-gsb");
+let list_standard_fees = [];
 
 function AccessPage() {
 	PHPSessionID = document.cookie.match(/PHPSESSID=[^;]+/);
@@ -40,10 +41,18 @@ function RequestAPI(url, data, redirectPage = "none") {
 	xhr.send(data);
 }
 
+function delete_cookie(name) {
+	document.cookie = name + '=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+}
+
 function AlertMessage(event, message = "") {
 	if (event == "view") {
 		alert.innerHTML = message;
-		alert.classList.remove("hide");
+		setTimeout(function () { alert.classList.remove("hide"); }, 100);
+		if (message == "You are not logged") {
+			delete_cookie("PHPSESSID");
+			window.location.replace("index.php");
+		}
 	} else {
 		alert.classList.add("hide");
 	}
@@ -65,13 +74,23 @@ function SwitchAPI(api, content) {
 				delete element['role_label'];
 				delete element['first_name'];
 				delete element['last_name'];
-				delete element['username'];
+				delete element['email'];
 				delete element['add_date'];
 				delete element['fee_sheet_id'];
+				delete element['state'];
 				element['use_date'] = convertDate(new Date(Date.parse(element['use_date'])));
 				element["edit"] = `<button class="btn" onclick=""><i class="fa-solid fa-pen"></i></button>`;
 			});
 			document.getElementById("table_feesheets").innerHTML = ConvertJsonToTable(content, 'table_feesheets', null, null);
+			break;
+		case "all_get_standard_fees":
+			list_standard_fees = content;
+			content.forEach(element => {
+				document.getElementById("inputFees").innerHTML += `<option value="${element["id"]}">${element["label"]} | ${element["fee"]}</option>`;
+			});
+			break;
+		case "multi_add_feesheets":
+			ToogleNewFeeSheet()
 			break;
 		default:
 			AlertMessage("view", "Function doesn't exist.")
