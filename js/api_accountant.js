@@ -98,24 +98,20 @@ function SwitchAPI(api, content) {
 			list_feesheet = content;
 			i = 0;
 			content.forEach(element => {
-				delete element['id_user'];
+				// delete element['id_user'];
 				delete element['url_pict'];
 				// delete element['standard_fee'];
 				delete element['role_label'];
-				delete element['first_name'];
-				delete element['last_name'];
-				delete element['email'];
-				delete element['add_date'];
+				// delete element['first_name'];
+				// delete element['last_name'];
+				// delete element['email'];
+				element['add_date'] = convertDate(new Date(Date.parse(element['add_date'])));
 				// delete element['fee_sheet_id'];
 				element['use_date'] = convertDate(new Date(Date.parse(element['use_date'])));
 				// element['state_label'] = element['state_label'].replaceAll("??", "é");
 				// element['standard_fee_label'] = element['standard_fee_label'].replaceAll("??", "é");
 				element['description'] = element['description'].replaceAll("??", "é");
-				if (element['state'] == 1) {
-					element["view"] = `<button class="btn" onclick="ViewFeeSheet(${i})"><i class="fa-solid fa-eye"></i></button>`;
-				} else {
-					element["view"] = `<button class="btn" onclick="EditFeeSheet(${i})"><i class="fa-solid fa-pen"></i></button>`;
-				}
+				element["view"] = `<button class="btn" onclick="EditFeeSheet_admin(${i})"><i class="fa-solid fa-pen"></i></button>`;
 				delete element['state'];
 				i++;
 			});
@@ -126,7 +122,7 @@ function SwitchAPI(api, content) {
 			content.forEach(element => {
 				document.getElementById("inputFees").innerHTML += `<option value="${element["id"]}">${element["label"]} | ${element["fee"]}</option>`;
 				document.getElementById("Edit_inputFees").innerHTML += `<option value="${element["id"]}">${element["label"]} | ${element["fee"]}</option>`;
-				document.getElementById("View_inputFees").innerHTML += `<option value="${element["id"]}">${element["label"]} | ${element["fee"]}</option>`;
+				// document.getElementById("View_inputFees").innerHTML += `<option value="${element["id"]}">${element["label"]} | ${element["fee"]}</option>`;
 			});
 			break;
 		case "multi_add_feesheets":

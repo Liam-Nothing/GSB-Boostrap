@@ -167,3 +167,12 @@ function ToogleViewFeeSheet() {
 		GetFeesheets();
 	}
 }
+
+function EditFeeSheet_admin(id) {
+	ToogleEditFeeSheet();
+	document.getElementById("Edit_Description").value = list_feesheet[id]["description"];
+	document.getElementById("Edit_use_date").value = list_feesheet[id]["use_date"].split("/").reverse().join("-");
+	document.getElementById("Edit_Fee").value = list_feesheet[id]["fee"];
+	document.getElementById("EditDeleteHide").value = list_feesheet[id]["fee_sheet_id"];
+	selectElement("Edit_inputFees", list_feesheet[id]["standard_fee"]);
+}
