@@ -1,5 +1,5 @@
 let love = "❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️";
-let alert = document.getElementById("alert-gsb");
+let alertBox = document.getElementById("alert-gsb");
 let list_standard_fees = [];
 let list_feesheet = [];
 
@@ -8,7 +8,11 @@ function AccessPage() {
 	PageName = window.location.pathname.split("/").pop();
 	if (PHPSessionID) {
 		if (PageName == "" || PageName == "index.php") {
-			window.location.replace("board.php");
+			if (getCookie("user") == 3) {
+				window.location.replace("admin_board.php");
+			} else {
+				window.location.replace("board.php");
+			}
 		}
 	} else {
 		if (PageName != "" && PageName != "index.php") {
@@ -29,11 +33,11 @@ function RequestAPI(url, data, redirectPage = "none") {
 			if (json.id == 2) {
 				AlertMessage("view", json.message)
 			} else if (json.id == 1) {
-				if (redirectPage != "none") {
-					window.location.replace(redirectPage);
-				} else {
-					SwitchAPI(JSON.parse(data)["api"], json.content);
+				if (json.id_role) {
+					// console.log(json.id_role);
+					json.content = json.id_role;
 				}
+				SwitchAPI(JSON.parse(data)["api"], json.content);
 			} else {
 				AlertMessage("view", "Error")
 			}
@@ -48,14 +52,14 @@ function delete_cookie(name) {
 
 function AlertMessage(event, message = "") {
 	if (event == "view") {
-		alert.innerHTML = message;
-		setTimeout(function () { alert.classList.remove("hide"); }, 100);
+		alertBox.innerHTML = message;
+		setTimeout(function () { alertBox.classList.remove("hide"); }, 100);
 		if (message == "You are not logged") {
 			delete_cookie("PHPSESSID");
 			window.location.replace("index.php");
 		}
 	} else {
-		alert.classList.add("hide");
+		alertBox.classList.add("hide");
 	}
 }
 
@@ -63,6 +67,27 @@ function convertDate(inputFormat) {
 	function pad(s) { return (s < 10) ? '0' + s : s; }
 	var d = new Date(inputFormat)
 	return [pad(d.getDate()), pad(d.getMonth() + 1), d.getFullYear()].join('/')
+}
+
+function setCookie(name, value, days) {
+	var expires = "";
+	if (days) {
+		var date = new Date();
+		date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+		expires = "; expires=" + date.toUTCString();
+	}
+	document.cookie = name + "=" + (value || "") + expires + "; path=/";
+}
+
+function getCookie(name) {
+	var nameEQ = name + "=";
+	var ca = document.cookie.split(';');
+	for (var i = 0; i < ca.length; i++) {
+		var c = ca[i];
+		while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+		if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+	}
+	return null;
 }
 
 function SwitchAPI(api, content) {
@@ -109,8 +134,19 @@ function SwitchAPI(api, content) {
 		case "multi_update_feesheets":
 			ToogleEditFeeSheet();
 			break;
+		case "all_open_session":
+			setCookie('user', content, 1);
+			if (content == 3) {
+				window.location.replace("admin_board.php");
+			} else {
+				window.location.replace("board.php");
+			}
+			break;
+		case "all_logout_session":
+			window.location.replace("index.php");
+			break;
 		default:
-			AlertMessage("view", "Function doesn't exist.")
+			AlertMessage("view", "Function doesn't exist. " + api)
 	}
 }
 

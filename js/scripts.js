@@ -19,6 +19,7 @@ function Logout() {
 	let data = JSON.stringify({ "api": api });
 	let url = api_url;
 
+	delete_cookie("user");
 	RequestAPI(url, data, redirectPage);
 }
 

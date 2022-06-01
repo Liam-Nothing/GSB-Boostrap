@@ -26,7 +26,6 @@
 				</div>
 				<div class="list-group list-group-flush">
 					<a class="list-group-item list-group-item-action p-3 border-0 bg-transparent text-white" onclick="ToogleNewFeeSheet()"><i class="fa-solid fa-pen-to-square"></i> New feesheet</a>
-					<!-- <a class="list-group-item list-group-item-action p-3 border-0 bg-transparent text-white" href="#!"><i class="fa-solid fa-user"></i> Manage users</a> -->
 					<a class="list-group-item list-group-item-action p-3 border-0 bg-transparent text-white" onclick="Logout()"><i class="fa-solid fa-arrow-right-from-bracket"></i> Logout</a>
 				</div>
 			</div>
