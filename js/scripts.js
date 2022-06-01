@@ -92,6 +92,15 @@ function EditFeeSheet(id) {
 	selectElement("Edit_inputFees", list_feesheet[id]["standard_fee"]);
 }
 
+function ViewFeeSheet(id) {
+	ToogleViewFeeSheet();
+	document.getElementById("View_Description").value = list_feesheet[id]["description"];
+	document.getElementById("View_use_date").value = list_feesheet[id]["use_date"].split("/").reverse().join("-");
+	document.getElementById("View_Fee").value = list_feesheet[id]["fee"];
+	document.getElementById("ViewDeleteHide").value = list_feesheet[id]["fee_sheet_id"];
+	selectElement("View_inputFees", list_feesheet[id]["standard_fee"]);
+}
+
 function EditDelete() {
 	let api = "multi_delete_feesheets";
 	let id_feesheet = document.getElementById("EditDeleteHide").value;
@@ -139,4 +148,21 @@ function UpdateFeesheets(state) {
 	let url = api_url;
 
 	RequestAPI(url, data);
+}
+
+function ToogleViewFeeSheet() {
+	Feesheets_Table = document.getElementById("table-container");
+	NewFeesheets_Card = document.getElementById("feesheet-form");
+	ViewFeesheets_Card = document.getElementById("view-feesheet-form");
+
+	if (ViewFeesheets_Card.classList.contains("hide")) {
+		Feesheets_Table.classList.add("hide");
+		NewFeesheets_Card.classList.add("hide");
+		ViewFeesheets_Card.classList.remove("hide");
+	} else {
+		Feesheets_Table.classList.remove("hide");
+		NewFeesheets_Card.classList.add("hide");
+		ViewFeesheets_Card.classList.add("hide");
+		GetFeesheets();
+	}
 }

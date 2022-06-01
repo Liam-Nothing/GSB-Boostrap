@@ -99,6 +99,7 @@ function SwitchAPI(api, content) {
 			content.forEach(element => {
 				document.getElementById("inputFees").innerHTML += `<option value="${element["id"]}">${element["label"]} | ${element["fee"]}</option>`;
 				document.getElementById("Edit_inputFees").innerHTML += `<option value="${element["id"]}">${element["label"]} | ${element["fee"]}</option>`;
+				document.getElementById("View_inputFees").innerHTML += `<option value="${element["id"]}">${element["label"]} | ${element["fee"]}</option>`;
 			});
 			break;
 		case "multi_add_feesheets":

@@ -122,6 +122,42 @@
 						</div>
 					</div>
 
+					<div class="anim-hide hide" id="view-feesheet-form">
+						<div class="card m-lg-5 mt-3">
+							<h5 class="card-header">View feesheet</h5>
+							<div class="card-body">
+								<form>
+									<input type="hidden" id="ViewDeleteHide" value="" />
+									<div class="form-row">
+										<div class="form-group col-md-6">
+											<label for="View_Description">Description</label>
+											<input type="text" class="form-control" id="View_Description" placeholder="Description" disabled>
+										</div>
+									</div>
+									<div class="form-row">
+										<div class="form-group col-md-6">
+											<label for="View_Fee">Fee</label>
+											<input type="text" class="form-control" id="View_Fee" placeholder="30.00" disabled>
+										</div>
+									</div>
+									<div class="form-row">
+										<div class="form-group col-md-2">
+											<label for="View_use_date">Use date</label>
+											<input type="date" class="form-control" id="View_use_date" disabled>
+										</div>
+									</div>
+									<div class="form-group col-md-4">
+										<label for="View_inputFees">Standard fees</label>
+										<div class="form-horizontal">
+											<select id="View_inputFees" class="form-control" disabled></select>
+										</div>
+									</div>
+								</form>
+							</div>
+							<button class="btn btn-danger mr-3" onclick="ToogleViewFeeSheet()"><i class="fa-solid fa-xmark"></i></button>
+						</div>
+					</div>
+
 					<div id="alert-gsb" class="alert alert-danger mt-4 anim-hide hide" role="alert"></div>
 
 				</div>
