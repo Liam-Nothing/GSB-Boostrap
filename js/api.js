@@ -81,6 +81,9 @@ function SwitchAPI(api, content) {
 				delete element['add_date'];
 				// delete element['fee_sheet_id'];
 				element['use_date'] = convertDate(new Date(Date.parse(element['use_date'])));
+				element['state_label'] = element['state_label'].replaceAll("??", "é");
+				// element['standard_fee_label'] = element['standard_fee_label'].replaceAll("??", "é");
+				element['description'] = element['description'].replaceAll("??", "é");
 				if (element['state'] == 1) {
 					element["view"] = `<button class="btn" onclick="ViewFeeSheet(${i})"><i class="fa-solid fa-eye"></i></button>`;
 				} else {
