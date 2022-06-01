@@ -41,12 +41,12 @@
 				<!-- Page content-->
 				<div class="container-fluid">
 
-					<div class="table-responsive" id="table-container">
+					<div class="table-responsive anim-hide" id="table-container">
 						<table class="table table-hover" id="table_feesheets">
 						</table>
 					</div>
 
-					<div class="hide" id="feesheet-form">
+					<div class="anim-hide hide" id="feesheet-form">
 						<div class="card m-lg-5 mt-3">
 							<h5 class="card-header">New feesheet</h5>
 							<div class="card-body">
@@ -64,7 +64,7 @@
 										</div>
 									</div>
 									<div class="form-row">
-										<div class="form-group col-md-2">
+										<div class="form-group col-md-4">
 											<label for="use_date">Use date</label>
 											<input type="date" class="form-control" id="use_date">
 										</div>
@@ -83,7 +83,7 @@
 						</div>
 					</div>
 
-					<div class="hide" id="edit-feesheet-form">
+					<div class="anim-hide hide" id="edit-feesheet-form">
 						<div class="card m-lg-5 mt-3">
 							<h5 class="card-header">Edit feesheet</h5>
 							<div class="card-body">
@@ -113,8 +113,8 @@
 											<select id="Edit_inputFees" class="form-control"></select>
 										</div>
 									</div>
-									<button type="button" class="btn btn-primary mt-3" onclick="EditNewFeeSheet(0)">Send</button>
-									<button type="button" class="btn btn-warning mt-3" onclick="EditNewFeeSheet(1)">Draft</button>
+									<button type="button" class="btn btn-primary mt-3" onclick="EditUpdate(0)">Send</button>
+									<button type="button" class="btn btn-warning mt-3" onclick="EditUpdate(1)">Draft</button>
 									<button type="button" class="btn btn-danger mt-3" onclick="EditDelete()">Delete</button>
 								</form>
 							</div>
@@ -122,7 +122,8 @@
 						</div>
 					</div>
 
-					<div id="alert-gsb" class="alert alert-danger mt-4 hide" role="alert"></div>
+					<div id="alert-gsb" class="alert alert-danger mt-4 anim-hide hide" role="alert"></div>
+
 				</div>
 			</div>
 		</div>

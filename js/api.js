@@ -102,6 +102,7 @@ function SwitchAPI(api, content) {
 			ToogleNewFeeSheet();
 			break;
 		case "multi_delete_feesheets":
+		case "multi_update_feesheets":
 			ToogleEditFeeSheet();
 			break;
 		default:

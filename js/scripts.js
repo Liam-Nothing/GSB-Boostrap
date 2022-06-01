@@ -118,3 +118,25 @@ function ToogleEditFeeSheet() {
 		GetFeesheets();
 	}
 }
+
+function EditUpdate(draft) {
+	if (draft) {
+		UpdateFeesheets(2);
+	} else {
+		UpdateFeesheets(1);
+	}
+}
+
+function UpdateFeesheets(state) {
+	let api = "multi_update_feesheets";
+	let description = document.getElementById("Edit_Description").value;
+	let fee = document.getElementById("Edit_Fee").value;
+	let use_date = document.getElementById("Edit_use_date").value;
+	let standard_fee = document.getElementById("Edit_inputFees").value;
+	let id_feesheet = document.getElementById("EditDeleteHide").value;
+
+	let data = JSON.stringify({ "api": api, "description": description, "fee": fee, "use_date": use_date, "standard_fee": standard_fee, "state": state, "id_feesheet": id_feesheet });
+	let url = api_url;
+
+	RequestAPI(url, data);
+}

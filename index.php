@@ -35,7 +35,7 @@
 
 								<button class="btn btn-primary btn-lg btn-block" type="button" onclick="Login()">Login</button>
 
-								<div id="alert-gsb" class="alert alert-danger mt-4 hide" role="alert"></div>
+								<div id="alert-gsb" class="alert alert-danger mt-4 anim-hide hide" role="alert"></div>
 
 							</div>
 						</div>
